@@ -1,5 +1,7 @@
+import { HKT } from "../HKT"
+
 /**
  *
  *
  */
-export class List {}
+export type List<A> = HKT<"List", A>

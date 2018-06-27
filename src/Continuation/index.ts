@@ -1,5 +1,7 @@
+import { HKT } from "../HKT"
+
 /**
  *
  *
  */
-export class Continuation {}
+export type Continuation<A> = HKT<"Continuation", A>
