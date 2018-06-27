@@ -3,7 +3,7 @@
   "description": "A collection of monads written in Typescript to control complexity and manage side effects.",
   "version": "0.1.0",
   "keywords": [],
-  "main": "index.js",
+  "main": "dist/ts-monad.umd.js",
   "module": "dist/ts-monad.es5.js",
   "typings": "dist/types/ts-monad.d.ts",
   "files": [
