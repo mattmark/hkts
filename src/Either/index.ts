@@ -1,5 +1,4 @@
 import { HKT2 } from "../HKT"
-import { EALREADY } from "constants"
 
 export type Either<L, R> = HKT2<"Either", L, R>
 export type EitherV<L, R> = { type: "Left"; left: L } | { type: "Right"; right: R }
@@ -66,7 +65,7 @@ export function fromLeft<L, R>(flr: Either<L, R>): L {
 
 /**
  * A partial function that extracts the value from the `right` data constructor.
- * Passing a `Left` to `fromright` will throw an error at runtime.
+ * Passing a `Left` to `fromRight` will throw an error at runtime.
  */
 export function fromRight<L, R>(flr: Either<L, R>): R {
   const lr = prj(flr)
@@ -76,4 +75,14 @@ export function fromRight<L, R>(flr: Either<L, R>): R {
   }
 
   return lr.right
+}
+
+export function map<L, A, B>(f: (a: A) => B, fa: Either<L, A>): Either<L, B> {
+  const a = prj(fa)
+
+  if (a.type === "Left") {
+    return (a as any) as Either<L, B>
+  }
+
+  return right<L, B>(f(a.right))
 }
