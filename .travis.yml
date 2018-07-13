@@ -11,7 +11,7 @@ cahce:
 notifications:
   email: false
 script:
-  - yarn test && yarn build
+  - yarn test:report && yarn build
 after_success:
   - yarn test:coverage
   - yarn docs:deploy
