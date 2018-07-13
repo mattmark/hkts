@@ -13,4 +13,6 @@ notifications:
 script:
   - yarn test && yarn build
 after_success:
-  - yarn tbd
+  - yarn test:coverage
+  - yarn docs:deploy
+  - yarn release
