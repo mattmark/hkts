@@ -1,7 +1,7 @@
 {
   "name": "hkts",
   "description": "A collection of monads written in Typescript to control complexity and manage side effects.",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "keywords": [],
   "main": "dist/hkts.umd.js",
   "module": "dist/hkts.es5.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/mattmark/hkts"
   },
   "license": "MIT",
   "engines": {
@@ -24,13 +24,23 @@
   "scripts": {
     "commit": "git-cz",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "prebuild": "rimraf dist",
+    "clean": "rimraf dist",
+    "prebuild": "yarn clean",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts",
+    "postbuild": "yarn docs",
+    "docs:deploy": "ts-node tools/publish",
+    "docs": "typedoc --out docs --target es6 --theme minimal --mode file src",
     "start": "rollup -c rollup.config.ts -w",
     "test": "nyc --reporter=lcov --require ts-node/register tape tests/**/*-test.{ts,js} | tap-spec; nyc report ---reporter=text",
     "test:watch": "",
     "test:coverage": "",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "release": "semantic-release",
+    "release:prepare": "ts-node tools/prepare",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release",
+    "prepush": "yarn test && yarn build",
+    "commitmsg": "validate-commit-msg"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -75,13 +85,18 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-typescript2": "^0.15.1",
+    "semantic-release": "^15.7.1",
+    "shelljs": "^0.8.2",
     "tap-spec": "^5.0.0",
     "tape": "^4.9.1",
     "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
     "tslint-config-standard": "^7.1.0",
+    "typedoc": "^0.11.1",
     "typescript": "^2.9.2",
-    "validate-commit-msg": "^2.14.0"
-  }
+    "validate-commit-msg": "^2.14.0",
+    "travis-deploy-once": "^5.0.1"
+  },
+  "dependencies": {}
 }

@@ -1,4 +1,6 @@
 /**
  * TODO
  */
-export function compose() {}
+export function compose() {
+  return true
+}

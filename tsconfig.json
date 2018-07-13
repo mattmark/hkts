@@ -17,6 +17,10 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "allowJs": false,
+    "noEmit": true,
+    "strictNullChecks": true,
     "typeRoots": [
       "node_modules/@types"
     ]
