@@ -1,6 +1,9 @@
+import { pipe } from "../Pipe"
+
 /**
- * TODO
+ *
+ *
  */
-export function compose() {
-  return true
+export function compose(...fns: Array<any>) {
+  return pipe(...fns.reverse())
 }
